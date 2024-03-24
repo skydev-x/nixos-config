@@ -9,7 +9,7 @@ in {
     pkgs."${browser}" discord libvirt swww grim slurp gnome.file-roller
     swaynotificationcenter rofi-wayland imv transmission-gtk mpv
     gimp obs-studio rustup audacity pavucontrol tree protonup-qt
-    font-awesome spotify swayidle neovide swaylock android-studio
+    font-awesome spotify swayidle neovide swaylock 
     neovim vim
     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
     # Import Scripts

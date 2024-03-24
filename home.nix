@@ -32,7 +32,6 @@ in {
     userName = "${gitUsername}";
     userEmail = "${gitEmail}";
   };
-
 programs.tmux = {
   enable = true;
   extraConfig = ''
@@ -40,7 +39,6 @@ programs.tmux = {
     run-shell ${pkgs.tmuxPlugins.cpu}/share/tmux-plugins/cpu/cpu.tmux
   '';
 };
-
   # Create XDG Dirs
   xdg = {
     userDirs = {

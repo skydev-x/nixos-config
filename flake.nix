@@ -1,5 +1,5 @@
 {
-  description = "ZaneyOS-mod";
+  description = "Skydev PDE";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -14,7 +14,7 @@
     impermanence.url = "github:nix-community/impermanence";
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, impermanence, ... }:
+  outputs = inputs@{ nixpkgs, home-manager, impermanence ,... }:
   let
     system = "x86_64-linux";
     inherit (import ./options.nix) username hostname;
@@ -26,6 +26,7 @@
       };
     };
   in {
+    devShells.x86_64-linux.default = pkgs.mkShell { };
     nixosConfigurations = {
       "${hostname}" = nixpkgs.lib.nixosSystem {
 	specialArgs = { 
@@ -35,7 +36,7 @@
 	modules = [ 
 	  ./system.nix
 	  impermanence.nixosModules.impermanence
-          home-manager.nixosModules.home-manager {
+    home-manager.nixosModules.home-manager {
 	    home-manager.extraSpecialArgs = {
 	      inherit username; inherit inputs;
               inherit (inputs.nix-colors.lib-contrib {inherit pkgs;}) gtkThemeFromScheme;
