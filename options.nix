@@ -8,7 +8,7 @@ let
   hostname = "nixos";
   userHome = "/home/${username}";
   flakeDir = "${userHome}/zaneyos";
-  waybarStyle = "simplebar"; # simplebar, slickbar, or default
+  waybarStyle = "slickbar"; # simplebar, slickbar, or default
 in {
   # User Variables
   username = "skydev";

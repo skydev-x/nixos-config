@@ -1,19 +1,18 @@
-with import <nixpkgs> {};
+{ pkgs ? import <nixpkgs> {
+    config = {
+        android_sdk.accept_license = true;
+    };
+} }:
 
-androidenv.emulateApp {
-  name = "emulate-MyAndroidApp";
-  platformVersion = "28";
-  abiVersion = "x86"; # armeabi-v7a, mips, x86_64
-  systemImageType = "google_apis_playstore";
-} shell.nix
+pkgs.mkShell {
+  buildInputs = [
+    pkgs.android-studio
+    pkgs.androidsdk_9_0 # Adjust this to an available version
+  ];
 
-# { pkgs ? import <nixpkgs> { } }:
-#
-# pkgs.mkShell 
-# {
-#   nativeBuildInputs = with pkgs; [
-#   ];
-#   shellHook = ''
-#     echo "Hello in dev shell"
-#   '';
-# }
+  shellHook = ''
+    export ANDROID_HOME=${pkgs.androidsdk_9_0}
+    export ANDROID_SDK_ROOT=${pkgs.androidsdk_9_0}
+    export NIXPKGS_ACCEPT_ANDROID_SDK_LICENSE=1
+  '';
+}
